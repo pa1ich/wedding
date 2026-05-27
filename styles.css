@@ -1,0 +1,647 @@
+/* ═══════════════════════════════════════════════════════════
+   WEDDING — Юрий & Диана — 8 августа
+   Palette: #430607 (burgundy) on #fff
+   Fonts:
+     - Wonder Garden (script) → WonderGarden.ttf в /fonts/
+       Fallback: Marck Script (Google Fonts, кириллица)
+     - Evgenia Deco          → EvgeniaDeco.ttf
+     - PosteRetro            → PosteRetro.ttf
+     - Playfair Display      → Google Fonts
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Custom fonts ─────────────────────────────────────────── */
+@font-face {
+  font-family: 'Wonder Garden';
+  src: url('fonts/WonderGarden.ttf') format('truetype'),
+       url('fonts/WonderGarden.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Evgenia Deco';
+  src: url('fonts/EvgeniaDeco.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PosteRetro';
+  src: url('fonts/PosteRetro.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Font shorthand classes ───────────────────────────────── */
+.script-font {
+  font-family: 'Wonder Garden', 'Marck Script', cursive;
+  font-style: normal;
+}
+.evgenia-font {
+  font-family: 'Evgenia Deco', 'Playfair Display', serif;
+  font-style: normal;
+}
+.retro-font {
+  font-family: 'PosteRetro', 'Courier Prime', 'Courier New', monospace;
+  font-style: normal;
+}
+
+/* ─── Reset & base ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: #f9f4f0;
+  color: #430607;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ─── Page container ──────────────────────────────────────── */
+.page {
+  max-width: 430px;
+  margin: 0 auto;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  padding: 24px 20px 0;
+  min-height: 680px;
+}
+
+.hero__decor {
+  position: absolute;
+  width: 90px;
+  pointer-events: none;
+}
+.hero__decor--tl {
+  top: 0;
+  left: 0;
+  transform: rotate(-15deg);
+}
+.hero__decor--tr {
+  top: 0;
+  right: 0;
+  transform: rotate(20deg);
+}
+
+.hero__names {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-top: 8px;
+}
+
+.hero__name {
+  font-family: 'Wonder Garden', 'Marck Script', cursive;
+  font-size: 100px;
+  line-height: 1;
+  color: #430607;
+  display: inline-block;
+}
+.hero__name--left {
+  margin-right: -20px;
+}
+.hero__name--right {
+  margin-left: -20px;
+}
+.hero__amp {
+  font-family: 'Wonder Garden', 'Marck Script', cursive;
+  font-size: 120px;
+  color: rgba(67, 6, 7, 0.45);
+  vertical-align: middle;
+  line-height: 0.8;
+}
+
+.hero__photo-wrap {
+  position: relative;
+  margin: 16px auto 0;
+  width: 320px;
+  height: 415px;
+  border-radius: 8px;
+  overflow: visible;
+}
+
+.hero__photo {
+  width: 320px;
+  height: 415px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 8px;
+}
+
+.hero__frame {
+  position: absolute;
+  inset: -5px;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero__flower {
+  position: absolute;
+  width: 80px;
+  pointer-events: none;
+  z-index: 3;
+}
+.hero__flower--bl {
+  bottom: -20px;
+  left: -30px;
+  transform: rotate(-5deg);
+}
+.hero__flower--br {
+  bottom: -20px;
+  right: -30px;
+  transform: rotate(25deg);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   МЫ ЖЕНИМСЯ BANNER
+══════════════════════════════════════════════════════════════ */
+.marry-banner {
+  position: relative;
+  margin: 40px 24px 0;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marry-banner__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.marry-banner__text {
+  position: relative;
+  z-index: 1;
+  font-size: 52px;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(67,6,7,0.4);
+  line-height: 1;
+}
+
+.divider {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0 0;
+}
+.divider img {
+  height: 28px;
+  opacity: 0.6;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   INVITATION
+══════════════════════════════════════════════════════════════ */
+.invitation {
+  padding: 28px 24px 0;
+  text-align: center;
+}
+
+.invitation__text {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #430607;
+}
+
+.invitation__date-wrap {
+  position: relative;
+  display: inline-block;
+  margin-top: 12px;
+}
+
+.invitation__decor {
+  position: absolute;
+  top: -18px;
+  left: -36px;
+  width: 56px;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.invitation__date {
+  font-size: 64px;
+  color: #430607;
+  line-height: 1.1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECTION HEADER (Локация / Тайминг / Dress code / etc.)
+══════════════════════════════════════════════════════════════ */
+.section-header {
+  position: relative;
+  margin: 40px -2px 0;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.section-header__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  opacity: 0.6;
+}
+
+.section-header .script-font {
+  position: relative;
+  z-index: 1;
+  font-size: 56px;
+  color: #430607;
+  line-height: 1;
+}
+
+.section-header__flower {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-27deg);
+  width: 68px;
+  pointer-events: none;
+  z-index: 2;
+}
+.section-header__flower--right {
+  left: auto;
+  right: 8px;
+  transform: translateY(-50%) rotate(27deg);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LOCATION
+══════════════════════════════════════════════════════════════ */
+.location {
+  padding: 24px 20px 0;
+  text-align: center;
+}
+
+.location__address {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #430607;
+}
+
+.location__venue {
+  font-size: 18px;
+  color: #430607;
+  margin-top: 6px;
+}
+
+.location__photo {
+  margin: 20px -20px 0;
+}
+.location__photo img {
+  width: calc(100% + 40px);
+  max-width: calc(100% + 40px);
+  height: 260px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.location__map {
+  margin: 16px 0 0;
+}
+
+.btn-map {
+  display: inline-block;
+  padding: 10px 28px;
+  border: 2px solid #430607;
+  border-radius: 30px;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: #430607;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-map:active {
+  background: #430607;
+  color: #fff;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TIMELINE
+══════════════════════════════════════════════════════════════ */
+.timeline {
+  padding: 20px 16px 0;
+  position: relative;
+}
+
+.timeline__wave {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.timeline__wave img {
+  width: 160px;
+  opacity: 0.8;
+}
+
+.timeline__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.timeline__item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.timeline__item--right {
+  flex-direction: row-reverse;
+}
+
+.timeline__photo {
+  flex: 0 0 110px;
+  height: 130px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.timeline__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.timeline__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.timeline__time {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 38px;
+  color: #430607;
+  line-height: 1;
+}
+
+.timeline__label {
+  font-size: 18px;
+  color: #430607;
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DRESS CODE
+══════════════════════════════════════════════════════════════ */
+.dresscode {
+  padding: 24px 20px 0;
+  text-align: center;
+}
+
+.dresscode__text {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #430607;
+}
+.dresscode__text strong {
+  font-weight: 800;
+}
+
+.dresscode__palette {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 16px auto 0;
+}
+.dresscode__palette span {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(67,6,7,0.15);
+  display: block;
+}
+
+.dresscode__photos {
+  margin: 20px -20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dresscode__photos img {
+  width: calc(100% + 40px);
+  max-width: calc(100% + 40px);
+  height: 200px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   GUEST FORM
+══════════════════════════════════════════════════════════════ */
+.guest-form {
+  padding: 28px 20px 0;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: #430607;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(67, 6, 7, 0.4);
+  border-radius: 8px;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: #430607;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+.form-input:focus {
+  border-color: #430607;
+}
+.form-input--short {
+  width: 100px;
+}
+
+.form-radios,
+.form-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.radio-label,
+.check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 17px;
+  color: #430607;
+  line-height: 1.4;
+}
+
+.radio-label input,
+.check-label input {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  accent-color: #430607;
+  cursor: pointer;
+}
+
+.btn-submit {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: #430607;
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: opacity 0.2s;
+  margin-top: 8px;
+}
+.btn-submit:active {
+  opacity: 0.85;
+}
+
+.form-success {
+  text-align: center;
+  font-size: 18px;
+  color: #430607;
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(67, 6, 7, 0.06);
+  border-radius: 8px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CONTACTS
+══════════════════════════════════════════════════════════════ */
+.contacts {
+  padding: 24px 20px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.contacts__text {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #430607;
+}
+
+.contacts__phone {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #430607;
+}
+
+.contacts__whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 2px solid #430607;
+  border-radius: 30px;
+  font-size: 17px;
+  color: #430607;
+  transition: background 0.2s, color 0.2s;
+}
+.contacts__whatsapp img {
+  width: 20px;
+  height: 20px;
+  display: inline;
+}
+.contacts__whatsapp:active {
+  background: #430607;
+  color: #fff;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════════════════ */
+.footer {
+  margin-top: 40px;
+  background: #430607;
+  padding: 18px 20px;
+  text-align: center;
+}
+
+.footer p {
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE (large screens — центрируем и добавляем тень)
+══════════════════════════════════════════════════════════════ */
+@media (min-width: 480px) {
+  body {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0;
+  }
+  .page {
+    box-shadow: 0 0 60px rgba(0,0,0,0.12);
+  }
+}
