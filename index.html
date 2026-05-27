@@ -179,13 +179,7 @@
     </div>
 
     <section class="guest-form">
-      <!-- ВАЖНО: замените YOUR_FORM_ID на ID из formspree.io -->
-      <form
-        id="guestForm"
-        action="https://formspree.io/f/YOUR_FORM_ID"
-        method="POST"
-        novalidate
-      >
+      <form id="guestForm" novalidate>
         <!-- Имя -->
         <div class="form-group">
           <label class="form-label" for="name">Имя и фамилия *</label>
@@ -303,29 +297,70 @@
   </div><!-- /.page -->
 
   <script>
-    // Formspree AJAX submit для красивого success-сообщения
-    const form = document.getElementById('guestForm');
+    const SUPABASE_URL  = 'https://ondsveochtpycwtogjqz.supabase.co';
+    const SUPABASE_ANON = 'sb_publishable_C89DXEWSoVfrb-fAzpYXZw_u_VMSWRw';
+
+    const form    = document.getElementById('guestForm');
     const success = document.getElementById('formSuccess');
 
     form.addEventListener('submit', async (e) => {
-      const action = form.getAttribute('action');
-      if (action.includes('YOUR_FORM_ID')) return; // fallback — обычная отправка
-
       e.preventDefault();
-      const data = new FormData(form);
+
+      const fd = new FormData(form);
+
+      // Собираем напитки (multiple checkboxes)
+      const drinks = fd.getAll('drinks').join(', ');
+
+      const payload = {
+        name:        fd.get('name')       || '',
+        attendance:  fd.get('attendance') || '',
+        guest_count: parseInt(fd.get('count')) || 1,
+        drinks:      drinks,
+        second_day:  fd.get('second_day') || ''
+      };
+
+      // Валидация имени
+      if (!payload.name.trim()) {
+        alert('Пожалуйста, введите ваше имя');
+        return;
+      }
+
+      const btn = form.querySelector('.btn-submit');
+      btn.disabled = true;
+      btn.textContent = 'Отправляем…';
+
       try {
-        const res = await fetch(action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
+        const res = await fetch(
+          `${SUPABASE_URL}/rest/v1/wedding_responses`,
+          {
+            method: 'POST',
+            headers: {
+              'apikey':       SUPABASE_ANON,
+              'Authorization': `Bearer ${SUPABASE_ANON}`,
+              'Content-Type': 'application/json',
+              'Prefer':        'return=minimal'
+            },
+            body: JSON.stringify(payload)
+          }
+        );
+
+        if (res.ok || res.status === 201) {
           form.reset();
           success.hidden = false;
           success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          btn.textContent = 'Отправлено ✓';
+        } else {
+          const err = await res.text();
+          console.error('Supabase error:', res.status, err);
+          alert('Ошибка отправки. Попробуйте ещё раз.');
+          btn.disabled = false;
+          btn.textContent = 'Отправить анкету';
         }
-      } catch (_) {
-        form.submit(); // fallback
+      } catch (err) {
+        console.error(err);
+        alert('Нет соединения. Проверьте интернет и попробуйте снова.');
+        btn.disabled = false;
+        btn.textContent = 'Отправить анкету';
       }
     });
   </script>
