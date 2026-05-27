@@ -1,25 +1,13 @@
-<svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
-  <path d="M80 210 C75 185 70 165 65 145 C60 125 62 105 72 90" stroke="#430607" stroke-width="1.8" stroke-linecap="round" opacity="0.65"/>
-  <path d="M68 150 C55 140 42 138 35 145" stroke="#430607" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
-  <path d="M68 150 C50 135 30 132 28 148 C40 135 62 138 68 150Z" fill="#430607" opacity="0.13"/>
-  <path d="M68 150 C48 138 28 144 28 148" stroke="#430607" stroke-width="0.8" opacity="0.35"/>
-  <path d="M72 120 C82 108 85 95 78 85" stroke="#430607" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
-  <path d="M72 120 C80 108 90 102 90 112 C82 104 73 110 72 120Z" fill="#430607" opacity="0.1"/>
-  <ellipse cx="95" cy="55" rx="22" ry="32" fill="#d4a598" opacity="0.45" transform="rotate(-20 95 75)"/>
-  <ellipse cx="115" cy="58" rx="20" ry="30" fill="#c8948a" opacity="0.45" transform="rotate(25 95 75)"/>
-  <ellipse cx="120" cy="75" rx="18" ry="28" fill="#d4a598" opacity="0.40" transform="rotate(55 95 75)"/>
-  <ellipse cx="108" cy="93" rx="18" ry="25" fill="#c8948a" opacity="0.38" transform="rotate(80 95 75)"/>
-  <ellipse cx="78" cy="88" rx="18" ry="25" fill="#d4a598" opacity="0.38" transform="rotate(-50 95 75)"/>
-  <ellipse cx="99" cy="62" rx="14" ry="20" fill="#b87060" opacity="0.50" transform="rotate(-15 95 75)"/>
-  <ellipse cx="112" cy="70" rx="12" ry="18" fill="#a86050" opacity="0.50" transform="rotate(30 95 75)"/>
-  <ellipse cx="107" cy="85" rx="12" ry="18" fill="#b87060" opacity="0.45" transform="rotate(65 95 75)"/>
-  <ellipse cx="85" cy="82" rx="12" ry="16" fill="#a86050" opacity="0.45" transform="rotate(-45 95 75)"/>
-  <ellipse cx="97" cy="68" rx="9" ry="14" fill="#430607" opacity="0.35" transform="rotate(-10 95 75)"/>
-  <ellipse cx="107" cy="74" rx="8" ry="12" fill="#430607" opacity="0.30" transform="rotate(30 95 75)"/>
-  <ellipse cx="100" cy="82" rx="7" ry="10" fill="#430607" opacity="0.28" transform="rotate(60 95 75)"/>
-  <circle cx="99" cy="74" r="8" fill="#430607" opacity="0.40"/>
-  <circle cx="99" cy="73" r="4" fill="#430607" opacity="0.60"/>
-  <ellipse cx="40" cy="138" rx="7" ry="10" fill="#c8948a" opacity="0.60" transform="rotate(-30 40 138)"/>
-  <ellipse cx="40" cy="138" rx="4" ry="7" fill="#430607" opacity="0.30" transform="rotate(-30 40 138)"/>
-  <path d="M44 143 C52 140 56 135 50 130 C48 140 44 143 44 143Z" fill="#430607" opacity="0.12"/>
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+  <!-- Main decorative heart with dots around -->
+  <path d="M60 95 C60 95 15 65 15 40 C15 27 25 18 37 18 C45 18 53 23 60 32 C67 23 75 18 83 18 C95 18 105 27 105 40 C105 65 60 95 60 95Z" fill="#430607" opacity="0.22"/>
+  <path d="M60 90 C60 90 22 63 22 40 C22 30 30 22 40 22 C48 22 55 27 60 35 C65 27 72 22 80 22 C90 22 98 30 98 40 C98 63 60 90 60 90Z" stroke="#430607" stroke-width="1.5" fill="none" opacity="0.55"/>
+  <!-- Tiny hearts satellite -->
+  <path d="M22 18 C22 18 12 11 12 7 C12 5 14 3 16 3 C18 3 20 5 22 7 C24 5 26 3 28 3 C30 3 32 5 32 7 C32 11 22 18 22 18Z" fill="#430607" opacity="0.40"/>
+  <path d="M96 22 C96 22 88 16 88 12 C88 10 89.5 9 91 9 C92.5 9 94 10.5 96 12 C98 10.5 99.5 9 101 9 C102.5 9 104 10 104 12 C104 16 96 22 96 22Z" fill="#430607" opacity="0.35"/>
+  <!-- Decorative dots -->
+  <circle cx="38" cy="12" r="3" fill="#430607" opacity="0.25"/>
+  <circle cx="82" cy="12" r="3" fill="#430607" opacity="0.25"/>
+  <circle cx="12" cy="48" r="2.5" fill="#430607" opacity="0.20"/>
+  <circle cx="108" cy="48" r="2.5" fill="#430607" opacity="0.20"/>
 </svg>

@@ -1,22 +1,12 @@
-<svg viewBox="0 0 160 180" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
-  <path d="M70 170 C75 155 82 140 90 128 C98 116 102 102 95 88" stroke="#430607" stroke-width="1.6" stroke-linecap="round" opacity="0.60"/>
-  <path d="M88 125 C100 118 112 120 116 130" stroke="#430607" stroke-width="1.2" stroke-linecap="round" opacity="0.50"/>
-  <path d="M88 125 C104 115 116 118 116 130 C104 120 90 120 88 125Z" fill="#430607" opacity="0.11"/>
-  <path d="M92 103 C85 95 80 85 84 78" stroke="#430607" stroke-width="1.2" stroke-linecap="round" opacity="0.45"/>
-  <path d="M92 103 C84 94 78 88 82 80 C86 90 92 103 92 103Z" fill="#430607" opacity="0.09"/>
-  <ellipse cx="80" cy="55" rx="18" ry="26" fill="#e8c0b0" opacity="0.50" transform="rotate(15 80 72)"/>
-  <ellipse cx="62" cy="60" rx="16" ry="24" fill="#d8a898" opacity="0.50" transform="rotate(-28 80 72)"/>
-  <ellipse cx="58" cy="75" rx="15" ry="22" fill="#e8c0b0" opacity="0.45" transform="rotate(-58 80 72)"/>
-  <ellipse cx="70" cy="89" rx="15" ry="20" fill="#d8a898" opacity="0.42" transform="rotate(-82 80 72)"/>
-  <ellipse cx="95" cy="83" rx="15" ry="20" fill="#e8c0b0" opacity="0.42" transform="rotate(48 80 72)"/>
-  <ellipse cx="76" cy="62" rx="11" ry="17" fill="#b87868" opacity="0.52" transform="rotate(12 80 72)"/>
-  <ellipse cx="65" cy="70" rx="10" ry="16" fill="#a86858" opacity="0.52" transform="rotate(-28 80 72)"/>
-  <ellipse cx="70" cy="83" rx="10" ry="14" fill="#b87868" opacity="0.48" transform="rotate(-62 80 72)"/>
-  <ellipse cx="88" cy="78" rx="10" ry="14" fill="#a86858" opacity="0.48" transform="rotate(42 80 72)"/>
-  <ellipse cx="78" cy="68" rx="7" ry="11" fill="#430607" opacity="0.32" transform="rotate(8 80 72)"/>
-  <ellipse cx="70" cy="74" rx="6" ry="10" fill="#430607" opacity="0.28" transform="rotate(-28 80 72)"/>
-  <circle cx="78" cy="72" r="7" fill="#430607" opacity="0.38"/>
-  <circle cx="78" cy="71" r="3.5" fill="#430607" opacity="0.55"/>
-  <ellipse cx="110" cy="122" rx="6" ry="9" fill="#d8a898" opacity="0.55" transform="rotate(25 110 122)"/>
-  <ellipse cx="110" cy="122" rx="3.5" ry="6" fill="#430607" opacity="0.28" transform="rotate(25 110 122)"/>
+<svg viewBox="0 0 130 140" fill="none" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+  <!-- Large ornate heart -->
+  <path d="M65 120 C65 120 10 82 10 50 C10 33 22 22 38 22 C49 22 59 28 65 40 C71 28 81 22 92 22 C108 22 120 33 120 50 C120 82 65 120 65 120Z" fill="#430607" opacity="0.18"/>
+  <path d="M65 113 C65 113 17 77 17 50 C17 36 27 26 41 26 C51 26 60 32 65 43 C70 32 79 26 89 26 C103 26 113 36 113 50 C113 77 65 113 65 113Z" stroke="#430607" stroke-width="1.8" fill="none" opacity="0.50"/>
+  <!-- Inner small heart -->
+  <path d="M65 78 C65 78 44 65 44 54 C44 48 49 44 55 44 C59 44 63 46 65 50 C67 46 71 44 75 44 C81 44 86 48 86 54 C86 65 65 78 65 78Z" fill="#430607" opacity="0.25"/>
+  <!-- Decorative top ornament -->
+  <path d="M65 22 C65 22 55 13 55 8 C55 5 57.5 3 60 3 C62 3 64 4.5 65 6.5 C66 4.5 68 3 70 3 C72.5 3 75 5 75 8 C75 13 65 22 65 22Z" fill="#430607" opacity="0.45"/>
+  <!-- Small side hearts -->
+  <path d="M15 62 C15 62 6 56 6 51 C6 48.5 7.8 47 10 47 C11.8 47 13.5 48 15 50 C16.5 48 18.2 47 20 47 C22.2 47 24 48.5 24 51 C24 56 15 62 15 62Z" fill="#430607" opacity="0.30"/>
+  <path d="M115 62 C115 62 124 56 124 51 C124 48.5 122.2 47 120 47 C118.2 47 116.5 48 115 50 C113.5 48 111.8 47 110 47 C107.8 47 106 48.5 106 51 C106 56 115 62 115 62Z" fill="#430607" opacity="0.30"/>
 </svg>

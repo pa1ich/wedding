@@ -36,8 +36,9 @@
 }
 
 /* ─── Font shorthand classes ───────────────────────────────── */
+/* ui-ux-pro-max: Wedding/Romance pairing → Great Vibes + Marck Script как fallback */
 .script-font {
-  font-family: 'Wonder Garden', 'Marck Script', cursive;
+  font-family: 'Wonder Garden', 'Great Vibes', 'Marck Script', cursive;
   font-style: normal;
 }
 .evgenia-font {
@@ -697,4 +698,112 @@ a {
   .page {
     box-shadow: 0 0 60px rgba(0,0,0,0.12);
   }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   UI/UX PRO MAX — Soft UI Evolution + Touch + Accessibility
+   Источник: ui-ux-pro-max skill (Wedding/Romance design system)
+══════════════════════════════════════════════════════════════ */
+
+/* Transitions (200-300ms) на всех интерактивных элементах */
+.btn-map,
+.btn-submit,
+.contacts__phone,
+.contacts__whatsapp,
+.radio-label,
+.check-label {
+  transition: background 0.22s ease, color 0.22s ease,
+              border-color 0.22s ease, opacity 0.22s ease,
+              box-shadow 0.22s ease;
+}
+
+/* Touch targets ≥ 44px (Critical — мобильный сайт) */
+.btn-map {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.btn-submit {
+  min-height: 52px; /* чуть больше для комфорта */
+  cursor: pointer;
+}
+.contacts__whatsapp {
+  min-height: 48px;
+  cursor: pointer;
+}
+.contacts__phone {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Soft UI Evolution — тени для карточек и секций */
+.location__photo img,
+.dresscode__photos img {
+  box-shadow: 0 4px 16px rgba(67, 6, 7, 0.10);
+}
+
+/* Hover-активные состояния (не только :active) для desktop */
+@media (hover: hover) {
+  .btn-map:hover {
+    background: #430607;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(67, 6, 7, 0.25);
+  }
+  .contacts__whatsapp:hover {
+    background: #430607;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(67, 6, 7, 0.25);
+  }
+  .btn-submit:hover:not(:disabled) {
+    opacity: 0.88;
+    box-shadow: 0 4px 14px rgba(67, 6, 7, 0.30);
+  }
+  .radio-label:hover,
+  .check-label:hover {
+    opacity: 0.75;
+  }
+}
+
+/* Focus states — keyboard navigation (WCAG) */
+.btn-map:focus-visible,
+.btn-submit:focus-visible,
+.contacts__whatsapp:focus-visible,
+.form-input:focus-visible {
+  outline: 2px solid #430607;
+  outline-offset: 3px;
+}
+
+/* Формы — focus border */
+.form-input:focus {
+  border-color: #430607;
+  box-shadow: 0 0 0 3px rgba(67, 6, 7, 0.12);
+}
+
+/* prefers-reduced-motion — Accessibility (CRITICAL) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* cursor-pointer на всех кликабельных элементах */
+.radio-label,
+.check-label,
+.btn-map,
+.btn-submit {
+  cursor: pointer;
+}
+
+/* Section headers — soft shadow снизу */
+.section-header {
+  box-shadow: 0 2px 8px rgba(67, 6, 7, 0.08);
+}
+
+/* Marry-banner — добавляем текстовую тень для читабельности */
+.marry-banner__text {
+  text-shadow: 0 2px 12px rgba(30, 0, 0, 0.55), 0 1px 4px rgba(0,0,0,0.40);
 }
