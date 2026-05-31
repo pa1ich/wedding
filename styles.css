@@ -401,18 +401,18 @@ a {
   display: grid;
   grid-template-columns: 1fr 72px 1fr;
   align-items: start;
-  min-height: 460px;
+  min-height: 560px;
 }
 
 /* ── Левая колонка ── */
 .timeline__col--left {
-  padding: 20px 6px 20px 0;
+  padding: 24px 6px 24px 0;
   text-align: right;
 }
 
-/* ── Правая колонка — смещена вниз, чтобы создать зигзаг ── */
+/* ── Правая колонка — смещена вниз на ~120px для зигзага ── */
 .timeline__col--right {
-  padding: 0 0 20px 6px;
+  padding: 120px 0 24px 6px;
   text-align: left;
 }
 
@@ -471,7 +471,7 @@ a {
   text-transform: lowercase;
 }
 
-/* ── Фото таймлайна — без обрезки, в натуральный размер ── */
+/* ── Фото таймлайна — фиксированная высота, полная иллюстрация ── */
 .timeline__pic {
   margin-top: 8px;
 }
@@ -480,11 +480,13 @@ a {
 .timeline__col--right .timeline__pic img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 140px;
+  object-fit: contain;   /* показывает всё изображение, не обрезает */
+  object-position: center;
 }
 
 .timeline__pic--intro {
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 
 /* ══════════════════════════════════════════════════════════════
