@@ -47,8 +47,9 @@
       <span class="marry-banner__text script-font">мы женимся!</span>
     </div>
     <div class="divider" aria-hidden="true">
-      <svg class="divider__chevron" viewBox="0 0 40 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2 2L20 20L38 2" stroke="#570000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg class="divider__arrow" viewBox="0 0 12 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="6" y1="0" x2="6" y2="21" stroke="#570000" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M1 16 L6 24 L11 16" stroke="#570000" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
 
@@ -123,7 +124,11 @@
     </div>
 
     <section class="timeline">
-      <div class="timeline__heart-travel" aria-hidden="true">♥</div>
+      <div class="timeline__heart-travel" aria-hidden="true">
+        <svg width="20" height="18" viewBox="0 0 20 18" fill="none">
+          <path d="M10 17C10 17 1 10.8 1 5.2C1 2.8 2.8 1 5.2 1C7 1 8.7 2.2 10 4.4C11.3 2.2 13 1 14.8 1C17.2 1 19 2.8 19 5.2C19 10.8 10 17 10 17Z" fill="#430607"/>
+        </svg>
+      </div>
       <div class="timeline__inner">
 
         <!-- ── ЛЕВАЯ КОЛОНКА: 15:30, 17:00 ── -->
@@ -357,18 +362,62 @@
     setInterval(tick, 1000);
     tick();
 
-    /* ── Путешествующее сердечко в таймлайне ── */
+    /* ── Сердечко по треку S-кривой (timeline_wave.svg viewBox 160.06×422.96) ── */
     const timelineSec = document.querySelector('.timeline');
     const heartDot    = document.querySelector('.timeline__heart-travel');
+    const zigzagCol   = document.querySelector('.timeline__zigzag');
+
+    // Опорные точки пути из SVG (нормализованы: x∈[0,1], y∈[0,1])
+    const TRACK = [
+      [0.112, 0.009],
+      [0.974, 0.106],
+      [0.721, 0.219],
+      [0.134, 0.291],
+      [0.034, 0.463],
+      [0.322, 0.509],
+      [0.921, 0.551],
+      [0.921, 0.695],
+      [0.015, 0.841],
+      [0.637, 0.971],
+    ];
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function getTrackPos(progress) {
+      for (let i = 0; i < TRACK.length - 1; i++) {
+        const [x0, y0] = TRACK[i];
+        const [x1, y1] = TRACK[i + 1];
+        if (progress >= y0 && progress <= y1) {
+          const t = (progress - y0) / (y1 - y0);
+          return lerp(x0, x1, t);
+        }
+      }
+      return TRACK[TRACK.length - 1][0];
+    }
+
     function moveHeart() {
-      if (!timelineSec || !heartDot) return;
+      if (!timelineSec || !heartDot || !zigzagCol) return;
       const rect = timelineSec.getBoundingClientRect();
       const secH = timelineSec.offsetHeight;
       const vH   = window.innerHeight;
       const progress = Math.max(0, Math.min(1, (vH - rect.top) / (secH + vH)));
-      heartDot.style.top = (progress * (secH - 36)) + 'px';
+
+      const colRect  = zigzagCol.getBoundingClientRect();
+      const secRect  = timelineSec.getBoundingClientRect();
+      const colCenterX = colRect.left - secRect.left + colRect.width / 2;
+      const colW = colRect.width;
+
+      // x: нормализованная позиция → смещение от центра колонки (±30px)
+      const xNorm = getTrackPos(progress);
+      const xOffset = (xNorm - 0.5) * colW * 0.9;
+
+      const y = progress * (secH - 20);
+      heartDot.style.top  = y + 'px';
+      heartDot.style.left = (colCenterX + xOffset - 10) + 'px';
     }
+
     window.addEventListener('scroll', moveHeart, { passive: true });
+    window.addEventListener('resize', moveHeart, { passive: true });
     moveHeart();
   </script>
 
