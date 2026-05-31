@@ -262,11 +262,18 @@ a {
 .divider {
   display: flex;
   justify-content: center;
-  margin: 12px 0 0;
+  margin: 16px 0 0;
 }
 .divider img {
   height: 28px;
-  opacity: 0.6;
+  opacity: 0.55;
+  transform: rotate(90deg); /* стрелка вниз — подсказка «листай» */
+  animation: bounce-down 1.6s ease-in-out infinite;
+}
+
+@keyframes bounce-down {
+  0%, 100% { transform: rotate(90deg) translateX(0); }
+  50%       { transform: rotate(90deg) translateX(5px); }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -426,13 +433,11 @@ a {
   text-align: left;
 }
 
-/* ── Центральная линия-зигзаг — sticky при скролле ── */
+/* ── Центральная линия-зигзаг ── */
 .timeline__zigzag {
   display: flex;
   justify-content: center;
-  position: sticky;
-  top: 35vh;          /* прилипает когда доходит до 35% высоты экрана */
-  align-self: start;  /* нужно для sticky внутри grid */
+  position: relative;
   z-index: 1;
 }
 .timeline__zigzag img {
@@ -441,6 +446,25 @@ a {
   height: 100%;
   object-fit: fill;
   opacity: 0.85;
+}
+
+/* ── Путешествующее сердечко по центральной линии ── */
+.timeline {
+  position: relative;
+}
+.timeline__heart-travel {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  font-size: 22px;
+  line-height: 1;
+  color: #430607;
+  z-index: 10;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 4px rgba(67,6,7,0.35));
+  will-change: top;
+  transition: top 0.08s linear;
 }
 
 /* ── Элемент таймлайна ── */
@@ -469,39 +493,81 @@ a {
   text-transform: lowercase;
 }
 
-/* ── Фото в левой колонке — выходит за левый край ── */
+/* ── Фото таймлайна — ровно внутри колонки ── */
 .timeline__pic {
   margin-top: 8px;
-  overflow: visible;
 }
 
-.timeline__col--left .timeline__pic img {
-  display: block;
-  width: calc(100% + 20px);
-  margin-left: -20px;
-  height: 145px;
-  object-fit: cover;
-  object-position: center top;
-  border-radius: 6px 0 0 6px;
-}
-
-/* ── Фото в правой колонке — выходит за правый край ── */
+.timeline__col--left .timeline__pic img,
 .timeline__col--right .timeline__pic img {
   display: block;
-  width: calc(100% + 20px);
-  height: 145px;
+  width: 100%;
+  height: 130px;
   object-fit: cover;
-  object-position: center top;
-  border-radius: 0 6px 6px 0;
+  object-position: center;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(67, 6, 7, 0.12);
 }
 
-/* ── Вводное фото вверху правой колонки ── */
 .timeline__pic--intro {
   margin-bottom: 14px;
 }
-.timeline__pic--intro img {
-  height: 130px !important;
-  border-radius: 0 6px 6px 0;
+
+/* ══════════════════════════════════════════════════════════════
+   COUNTDOWN
+══════════════════════════════════════════════════════════════ */
+.countdown {
+  padding: 28px 20px 24px;
+  text-align: center;
+  background: rgba(67, 6, 7, 0.03);
+  border-top: 1px solid rgba(67, 6, 7, 0.08);
+  border-bottom: 1px solid rgba(67, 6, 7, 0.08);
+}
+
+.countdown__label {
+  font-size: 38px;
+  color: #430607;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.countdown__units {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+}
+
+.countdown__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 68px;
+}
+
+.countdown__num {
+  font-size: 52px;
+  color: #430607;
+  line-height: 1;
+  font-family: 'Evgenia Deco', 'Playfair Display', serif;
+  font-weight: 400;
+}
+
+.countdown__name {
+  font-size: 11px;
+  color: rgba(67, 6, 7, 0.55);
+  text-transform: lowercase;
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+}
+
+.countdown__colon {
+  font-size: 40px;
+  color: rgba(67, 6, 7, 0.4);
+  line-height: 1;
+  padding-top: 6px;
+  font-family: 'Playfair Display', serif;
+  user-select: none;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -828,3 +894,14 @@ a {
 }
 
 /* Marry-banner — текст тёмный, тени убраны (читается без контраста) */
+
+/* ── UX Pro Max: touch & scroll improvements ── */
+/* Убираем 300ms tap delay на всех интерактивных элементах */
+a, button, label, .radio-label, .check-label, .btn-map, .btn-submit {
+  touch-action: manipulation;
+}
+
+/* Запрет pull-to-refresh на странице */
+.page {
+  overscroll-behavior: contain;
+}
