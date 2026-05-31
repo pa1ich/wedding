@@ -471,35 +471,16 @@ a {
   text-transform: lowercase;
 }
 
-/* ── Фото таймлайна — без обрезки, сливаются с фоном ── */
+/* ── Фото таймлайна — без обрезки, в натуральный размер ── */
 .timeline__pic {
   margin-top: 8px;
 }
 
-.timeline__col--left .timeline__pic img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 160px;
-  object-fit: cover;
-  object-position: center top;
-  border-radius: 0;
-  /* Левая колонка: изображение растворяется вправо (к зигзагу) */
-  -webkit-mask-image: linear-gradient(to right, black 30%, transparent 92%);
-  mask-image: linear-gradient(to right, black 30%, transparent 92%);
-}
-
+.timeline__col--left .timeline__pic img,
 .timeline__col--right .timeline__pic img {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 160px;
-  object-fit: cover;
-  object-position: center top;
-  border-radius: 0;
-  /* Правая колонка: изображение растворяется влево (к зигзагу) */
-  -webkit-mask-image: linear-gradient(to left, black 30%, transparent 92%);
-  mask-image: linear-gradient(to left, black 30%, transparent 92%);
 }
 
 .timeline__pic--intro {
@@ -518,28 +499,28 @@ a {
 }
 
 .countdown__label {
-  font-size: 38px;
+  font-size: 62px;
   color: #430607;
   line-height: 1;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .countdown__units {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 2px;
+  gap: 0;
 }
 
 .countdown__unit {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 68px;
+  min-width: 72px;
 }
 
 .countdown__num {
-  font-size: 52px;
+  font-size: 64px;
   color: #430607;
   line-height: 1;
   font-family: 'Evgenia Deco', 'Playfair Display', serif;
@@ -547,18 +528,18 @@ a {
 }
 
 .countdown__name {
-  font-size: 11px;
+  font-size: 13px;
   color: rgba(67, 6, 7, 0.55);
   text-transform: lowercase;
-  margin-top: 4px;
-  letter-spacing: 0.06em;
+  margin-top: 5px;
+  letter-spacing: 0.04em;
 }
 
 .countdown__colon {
-  font-size: 40px;
-  color: rgba(67, 6, 7, 0.4);
+  font-size: 52px;
+  color: rgba(67, 6, 7, 0.35);
   line-height: 1;
-  padding-top: 6px;
+  padding-top: 4px;
   font-family: 'Playfair Display', serif;
   user-select: none;
 }

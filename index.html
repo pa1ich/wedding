@@ -125,8 +125,9 @@
 
     <section class="timeline">
       <div class="timeline__heart-travel" aria-hidden="true">
-        <svg width="20" height="18" viewBox="0 0 20 18" fill="none">
-          <path d="M10 17C10 17 1 10.8 1 5.2C1 2.8 2.8 1 5.2 1C7 1 8.7 2.2 10 4.4C11.3 2.2 13 1 14.8 1C17.2 1 19 2.8 19 5.2C19 10.8 10 17 10 17Z" fill="#430607"/>
+        <svg width="22" height="22" viewBox="0 0 30 30" fill="none">
+          <!-- Совпадает с формой терминального сердца timeline_wave.svg -->
+          <path d="M15 27C15 27 2 18 2 9.5C2 5.4 5.4 2 9.5 2C12 2 14.3 3.4 15 5.5C15.7 3.4 18 2 20.5 2C24.6 2 28 5.4 28 9.5C28 18 15 27 15 27Z" fill="#430607" stroke="none"/>
         </svg>
       </div>
       <div class="timeline__inner">
@@ -367,7 +368,7 @@
     const heartDot    = document.querySelector('.timeline__heart-travel');
     const zigzagCol   = document.querySelector('.timeline__zigzag');
 
-    // Опорные точки пути из SVG (нормализованы: x∈[0,1], y∈[0,1])
+    // Опорные точки из SVG-пути: [xNorm, yNorm] — x и y в диапазоне [0,1]
     const TRACK = [
       [0.112, 0.009],
       [0.974, 0.106],
@@ -383,41 +384,42 @@
 
     function lerp(a, b, t) { return a + (b - a) * t; }
 
-    function getTrackPos(progress) {
+    function getXNorm(progress) {
+      if (progress <= TRACK[0][1]) return TRACK[0][0];
       for (let i = 0; i < TRACK.length - 1; i++) {
         const [x0, y0] = TRACK[i];
         const [x1, y1] = TRACK[i + 1];
         if (progress >= y0 && progress <= y1) {
-          const t = (progress - y0) / (y1 - y0);
-          return lerp(x0, x1, t);
+          return lerp(x0, x1, (progress - y0) / (y1 - y0));
         }
       }
       return TRACK[TRACK.length - 1][0];
     }
 
+    // Кешируем offsetLeft — не зависит от скролла
+    let _colCenter = 0, _colW = 0;
+    function cacheLayout() {
+      if (!zigzagCol || !timelineSec) return;
+      // offsetLeft относительно timeline (position:relative)
+      _colCenter = zigzagCol.offsetLeft + zigzagCol.offsetWidth / 2;
+      _colW      = zigzagCol.offsetWidth;
+    }
+
     function moveHeart() {
-      if (!timelineSec || !heartDot || !zigzagCol) return;
+      if (!timelineSec || !heartDot) return;
       const rect = timelineSec.getBoundingClientRect();
       const secH = timelineSec.offsetHeight;
       const vH   = window.innerHeight;
       const progress = Math.max(0, Math.min(1, (vH - rect.top) / (secH + vH)));
 
-      const colRect  = zigzagCol.getBoundingClientRect();
-      const secRect  = timelineSec.getBoundingClientRect();
-      const colCenterX = colRect.left - secRect.left + colRect.width / 2;
-      const colW = colRect.width;
-
-      // x: нормализованная позиция → смещение от центра колонки (±30px)
-      const xNorm = getTrackPos(progress);
-      const xOffset = (xNorm - 0.5) * colW * 0.9;
-
-      const y = progress * (secH - 20);
-      heartDot.style.top  = y + 'px';
-      heartDot.style.left = (colCenterX + xOffset - 10) + 'px';
+      const xOffset = (getXNorm(progress) - 0.5) * _colW;
+      heartDot.style.top  = (progress * (secH - 24)) + 'px';
+      heartDot.style.left = (_colCenter + xOffset - 10) + 'px';
     }
 
     window.addEventListener('scroll', moveHeart, { passive: true });
-    window.addEventListener('resize', moveHeart, { passive: true });
+    window.addEventListener('resize', () => { cacheLayout(); moveHeart(); }, { passive: true });
+    cacheLayout();
     moveHeart();
   </script>
 
