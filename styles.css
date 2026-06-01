@@ -151,26 +151,14 @@ a {
   overflow: visible;
 }
 
-/* Органичная обводка вокруг людей (овал сверху, прямой низ) */
-.hero__photo-wrap::before {
-  content: '';
-  position: absolute;
-  inset: -5px;
-  border: 3.5px solid rgba(127, 18, 20, 0.88);
-  border-radius: 52% 52% 6px 6px / 36% 36% 6px 6px;
-  z-index: 2;
-  pointer-events: none;
-}
-.hero__photo-wrap::after {
-  display: none;
-}
+/* Рамку убрана — SVG-файл сам содержит обводку из Figma */
+.hero__photo-wrap::before,
+.hero__photo-wrap::after { display: none; }
 
 .hero__photo {
   width: 320px;
-  height: 415px;
-  object-fit: cover;
-  object-position: top center;
-  border-radius: 50% 50% 6px 6px / 34% 34% 6px 6px;
+  height: auto;
+  display: block;
 }
 
 /* ── Баннер «мы женимся!» поверх фото — кисть снизу ── */
@@ -303,9 +291,9 @@ a {
 
 .invitation__decor {
   position: absolute;
-  top: 50%;
-  left: -2px;
-  width: 38px;
+  top: 55%;
+  left: -6%;
+  width: 62px;
   transform: translateY(-50%);
   opacity: 0.88;
   pointer-events: none;
@@ -352,17 +340,17 @@ a {
 
 .section-header__flower {
   position: absolute;
-  left: 8px;
-  top: 50%;
-  transform: translateY(-50%) rotate(-27deg);
+  left: 120px;
+  top: 80%;
+  transform: translateY(-50%) rotate(-10deg);
   width: 68px;
   pointer-events: none;
   z-index: 2;
 }
 .section-header__flower--right {
   left: auto;
-  right: 8px;
-  transform: translateY(-50%) rotate(27deg);
+  right: 120px;
+  transform: translateY(-50%) rotate(10deg);
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -894,6 +882,62 @@ button, .btn-map, .btn-submit {
 }
 
 /* ══════════════════════════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════════════════════════ */
+
+/* Загрузка hero */
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeScaleIn {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.hero__names     { animation: fadeSlideDown 0.75s ease both; }
+.hero__photo-wrap { animation: fadeScaleIn  0.85s ease 0.18s both; }
+.hero__decor--tl { animation: fadeSlideDown 0.6s ease 0.05s both; }
+.hero__decor--tr { animation: fadeSlideDown 0.6s ease 0.12s both; }
+
+/* Плавающие сердечки (continuous float) */
+@keyframes floatBob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+.hero__flower--tl { animation: floatBob 3.2s ease-in-out infinite 0.0s; }
+.hero__flower--lm { animation: floatBob 2.9s ease-in-out infinite 0.5s; }
+.hero__flower--tr { animation: floatBob 3.5s ease-in-out infinite 0.9s; }
+.hero__flower--rm { animation: floatBob 3.0s ease-in-out infinite 1.3s; }
+.hero__decor--tl img,
+.hero__decor--tr img { animation: floatBob 4.0s ease-in-out infinite 0.3s; }
+
+/* Scroll-triggered fade-up (добавляется JS) */
+.anim-hidden {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.anim-hidden.anim-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Пульс секундомера */
+@keyframes secPulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+.sec-tick { animation: secPulse 0.25s ease; }
+
+/* brush-stroke: лёгкое мерцание */
+@keyframes brushGlow {
+  0%, 100% { opacity: 0.93; }
+  50%       { opacity: 1; }
+}
+.hero__brush-stroke { animation: brushGlow 3s ease-in-out infinite; }
+
+/* ══════════════════════════════════════════════════════════════
    DESKTOP ADAPTATION (768px+)
 ══════════════════════════════════════════════════════════════ */
 @media (min-width: 768px) {
@@ -954,8 +998,7 @@ button, .btn-map, .btn-submit {
   .countdown__unit  { min-width: 100px; }
 
   .location__photo img  { height: 360px; }
-  .dresscode__photos    { flex-direction: row; }
-  .dresscode__photos img { height: 260px; flex: 1; }
+  .dresscode__photos img { height: 260px; }
 
   .guest-form { padding: 32px 40px 0; }
 }
