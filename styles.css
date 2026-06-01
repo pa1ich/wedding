@@ -864,20 +864,10 @@ a {
   cursor: pointer;
 }
 
-/* Section headers — soft shadow снизу */
-.section-header {
-  box-shadow: 0 2px 8px rgba(67, 6, 7, 0.08);
-}
-
 /* Marry-banner — текст тёмный, тени убраны (читается без контраста) */
 
-/* ── UX Pro Max: touch & scroll improvements ── */
-/* Убираем 300ms tap delay на всех интерактивных элементах */
-a, button, label, .radio-label, .check-label, .btn-map, .btn-submit {
+/* ── UX Pro Max: touch tap delay ── */
+/* touch-action только на конкретных кнопках, не на a/label — не блокирует скролл */
+button, .btn-map, .btn-submit {
   touch-action: manipulation;
-}
-
-/* Запрет pull-to-refresh на странице */
-.page {
-  overscroll-behavior: contain;
 }
