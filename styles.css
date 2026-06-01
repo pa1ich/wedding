@@ -151,24 +151,18 @@ a {
   overflow: visible;
 }
 
-/* CSS рамка вместо съезжающего SVG */
+/* Органичная обводка вокруг людей (овал сверху, прямой низ) */
 .hero__photo-wrap::before {
   content: '';
   position: absolute;
   inset: -5px;
-  border: 2px solid rgba(127, 18, 20, 0.75);
-  border-radius: 12px;
+  border: 3.5px solid rgba(127, 18, 20, 0.88);
+  border-radius: 52% 52% 6px 6px / 36% 36% 6px 6px;
   z-index: 2;
   pointer-events: none;
 }
 .hero__photo-wrap::after {
-  content: '';
-  position: absolute;
-  inset: -11px;
-  border: 1px solid rgba(127, 18, 20, 0.22);
-  border-radius: 16px;
-  z-index: 2;
-  pointer-events: none;
+  display: none;
 }
 
 .hero__photo {
@@ -176,7 +170,35 @@ a {
   height: 415px;
   object-fit: cover;
   object-position: top center;
-  border-radius: 8px;
+  border-radius: 50% 50% 6px 6px / 34% 34% 6px 6px;
+}
+
+/* ── Баннер «мы женимся!» поверх фото — кисть снизу ── */
+.hero__marry {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  pointer-events: none;
+}
+.hero__brush-stroke {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero__marry-text {
+  position: relative;
+  z-index: 1;
+  font-size: 80px;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 1px 6px rgba(30,0,0,0.35);
 }
 
 .hero__flower {
@@ -281,11 +303,13 @@ a {
 
 .invitation__decor {
   position: absolute;
-  top: -18px;
-  left: -36px;
-  width: 56px;
-  opacity: 0.9;
+  top: 50%;
+  left: -2px;
+  width: 38px;
+  transform: translateY(-50%);
+  opacity: 0.88;
   pointer-events: none;
+  z-index: 1;
 }
 
 .invitation__date {
@@ -300,7 +324,9 @@ a {
 .section-header {
   position: relative;
   margin: 40px -2px 0;
-  height: 72px;
+  height: auto;
+  min-height: 90px;
+  padding: 8px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -319,7 +345,7 @@ a {
 .section-header .script-font {
   position: relative;
   z-index: 1;
-  font-size: 78px;
+  font-size: 120px;
   color: #430607;
   line-height: 1;
 }
@@ -423,12 +449,11 @@ a {
   position: relative;
   z-index: 1;
 }
-.timeline__zigzag img {
+.timeline__wave-svg {
   width: 72px;
-  min-height: 460px;
+  min-height: 560px;
   height: 100%;
-  object-fit: fill;
-  opacity: 0.85;
+  display: block;
 }
 
 /* ── Путешествующее сердечко по центральной линии ── */
@@ -495,13 +520,10 @@ a {
 .countdown {
   padding: 28px 20px 24px;
   text-align: center;
-  background: rgba(67, 6, 7, 0.03);
-  border-top: 1px solid rgba(67, 6, 7, 0.08);
-  border-bottom: 1px solid rgba(67, 6, 7, 0.08);
 }
 
 .countdown__label {
-  font-size: 62px;
+  font-size: 120px;
   color: #430607;
   line-height: 1;
   margin-bottom: 16px;
@@ -867,7 +889,73 @@ a {
 /* Marry-banner — текст тёмный, тени убраны (читается без контраста) */
 
 /* ── UX Pro Max: touch tap delay ── */
-/* touch-action только на конкретных кнопках, не на a/label — не блокирует скролл */
 button, .btn-map, .btn-submit {
   touch-action: manipulation;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DESKTOP ADAPTATION (768px+)
+══════════════════════════════════════════════════════════════ */
+@media (min-width: 768px) {
+  .page {
+    max-width: 680px;
+  }
+
+  .hero {
+    padding: 28px 40px 40px;
+  }
+  .hero__photo-wrap {
+    width: 380px;
+    height: 490px;
+  }
+  .hero__photo {
+    width: 380px;
+    height: 490px;
+  }
+  .hero__flower--tl  { left: 60px; }
+  .hero__flower--lm  { left: -52px; }
+  .hero__flower--tr  { left: 268px; }
+  .hero__flower--rm  { left: 314px; }
+
+  .section-header { margin: 52px -2px 0; }
+  .location__photo img { height: 300px; }
+  .dresscode__photos img { height: 240px; }
+
+  .countdown__num   { font-size: 80px; }
+  .countdown__unit  { min-width: 84px; }
+  .countdown__label { font-size: 140px; }
+  .countdown__colon { font-size: 64px; }
+
+  .invitation__date { font-size: 80px; }
+
+  .timeline__inner  { min-height: 620px; }
+  .timeline__wave-svg { min-height: 620px; }
+  .timeline__col--right { padding-top: 140px; }
+}
+
+@media (min-width: 1100px) {
+  .page {
+    max-width: 820px;
+  }
+
+  .hero__photo-wrap {
+    width: 440px;
+    height: 570px;
+  }
+  .hero__photo {
+    width: 440px;
+    height: 570px;
+  }
+  .hero__name  { font-size: 120px; }
+  .hero__amp   { font-size: 140px; }
+
+  .countdown__label { font-size: 160px; }
+  .countdown__num   { font-size: 92px; }
+  .countdown__unit  { min-width: 100px; }
+
+  .location__photo img  { height: 360px; }
+  .dresscode__photos    { flex-direction: row; }
+  .dresscode__photos img { height: 260px; flex: 1; }
+
+  .guest-form { padding: 32px 40px 0; }
 }

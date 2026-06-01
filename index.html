@@ -38,14 +38,16 @@
         <img src="assets/flower_2.png" alt="" class="hero__flower hero__flower--lm" aria-hidden="true" />
         <img src="assets/flower_3.png" alt="" class="hero__flower hero__flower--tr" aria-hidden="true" />
         <img src="assets/flower_4.png" alt="" class="hero__flower hero__flower--rm" aria-hidden="true" />
+        <!-- Кисть «мы женимся!» поверх фото снизу -->
+        <div class="hero__marry">
+          <svg class="hero__brush-stroke" viewBox="0 0 320 82" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M-4 14 Q 38 4 82 10 Q 160 18 238 8 Q 282 3 324 14 L324 62 Q 284 76 238 71 Q 160 63 82 73 Q 38 79 -4 68 Z" fill="#430607" opacity="0.93"/>
+          </svg>
+          <span class="hero__marry-text script-font">мы женимся!</span>
+        </div>
       </div>
     </section>
 
-    <!-- ══════════════════════════════ МЫ ЖЕНИМСЯ ══════════════════════════════ -->
-    <div class="marry-banner">
-      <img src="assets/banner_we_marry.jpg" alt="" class="marry-banner__bg" aria-hidden="true" />
-      <span class="marry-banner__text script-font">мы женимся!</span>
-    </div>
     <div class="divider" aria-hidden="true">
       <svg class="divider__arrow" viewBox="0 0 12 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line x1="6" y1="0" x2="6" y2="21" stroke="#570000" stroke-width="1.2" stroke-linecap="round"/>
@@ -157,9 +159,20 @@
 
         </div>
 
-        <!-- ── ЦЕНТРАЛЬНАЯ ЗИГЗАГ-ЛИНИЯ ── -->
+        <!-- ── ЦЕНТРАЛЬНАЯ ЗИГЗАГ-ЛИНИЯ (нарисована вручную) ── -->
         <div class="timeline__zigzag">
-          <img src="assets/timeline_wave.svg" alt="" aria-hidden="true" />
+          <svg id="timelineWave" class="timeline__wave-svg" viewBox="0 0 72 560" fill="none" aria-hidden="true">
+            <path id="wavePath"
+              d="M 36 18
+                 C 68 44 70 92 54 124
+                 C 34 162 6 172 6 214
+                 C 6 256 66 268 66 310
+                 C 66 352 12 370 12 412
+                 C 12 448 36 472 36 532"
+              stroke="#430607" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+            <path d="M 36 528 C 30 522 20 524 20 531 C 20 540 36 548 36 548 C 36 548 52 540 52 531 C 52 524 42 522 36 528 Z"
+              fill="#430607"/>
+          </svg>
         </div>
 
         <!-- ── ПРАВАЯ КОЛОНКА: image_top, 16:00, 21:00 ── -->
@@ -270,9 +283,24 @@
           />
         </div>
 
+        <!-- Дети -->
+        <div class="form-group">
+          <label class="form-label">3. Будут ли с вами дети?</label>
+          <div class="form-radios">
+            <label class="radio-label">
+              <input type="radio" name="children" value="Да" />
+              <span>Да</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="children" value="Нет" />
+              <span>Нет</span>
+            </label>
+          </div>
+        </div>
+
         <!-- Напитки -->
         <div class="form-group">
-          <label class="form-label">3. Предпочтения по напиткам</label>
+          <label class="form-label">4. Предпочтения по напиткам</label>
           <div class="form-checks">
             <label class="check-label"><input type="checkbox" name="drinks" value="Красное сухое вино" /><span>Красное сухое вино</span></label>
             <label class="check-label"><input type="checkbox" name="drinks" value="Красное полусладкое вино" /><span>Красное полусладкое вино</span></label>
@@ -289,7 +317,7 @@
 
         <!-- Второй день -->
         <div class="form-group">
-          <label class="form-label">4. Планируете ли Вы присутствовать на втором дне свадьбы?</label>
+          <label class="form-label">5. Планируете ли Вы присутствовать на втором дне свадьбы?</label>
           <div class="form-radios">
             <label class="radio-label">
               <input type="radio" name="second_day" value="Скорее да" />
@@ -363,63 +391,36 @@
     setInterval(tick, 1000);
     tick();
 
-    /* ── Сердечко по треку S-кривой (timeline_wave.svg viewBox 160.06×422.96) ── */
+    /* ── Сердечко по треку через getPointAtLength (точное следование пути) ── */
     const timelineSec = document.querySelector('.timeline');
     const heartDot    = document.querySelector('.timeline__heart-travel');
-    const zigzagCol   = document.querySelector('.timeline__zigzag');
-
-    // Опорные точки из SVG-пути: [xNorm, yNorm] — x и y в диапазоне [0,1]
-    const TRACK = [
-      [0.112, 0.009],
-      [0.974, 0.106],
-      [0.721, 0.219],
-      [0.134, 0.291],
-      [0.034, 0.463],
-      [0.322, 0.509],
-      [0.921, 0.551],
-      [0.921, 0.695],
-      [0.015, 0.841],
-      [0.637, 0.971],
-    ];
-
-    function lerp(a, b, t) { return a + (b - a) * t; }
-
-    function getXNorm(progress) {
-      if (progress <= TRACK[0][1]) return TRACK[0][0];
-      for (let i = 0; i < TRACK.length - 1; i++) {
-        const [x0, y0] = TRACK[i];
-        const [x1, y1] = TRACK[i + 1];
-        if (progress >= y0 && progress <= y1) {
-          return lerp(x0, x1, (progress - y0) / (y1 - y0));
-        }
-      }
-      return TRACK[TRACK.length - 1][0];
-    }
-
-    // Кешируем offsetLeft — не зависит от скролла
-    let _colCenter = 0, _colW = 0;
-    function cacheLayout() {
-      if (!zigzagCol || !timelineSec) return;
-      // offsetLeft относительно timeline (position:relative)
-      _colCenter = zigzagCol.offsetLeft + zigzagCol.offsetWidth / 2;
-      _colW      = zigzagCol.offsetWidth;
-    }
+    const wavePathEl  = document.getElementById('wavePath');
+    const waveSvgEl   = document.getElementById('timelineWave');
 
     function moveHeart() {
-      if (!timelineSec || !heartDot) return;
-      const rect = timelineSec.getBoundingClientRect();
-      const secH = timelineSec.offsetHeight;
-      const vH   = window.innerHeight;
-      const progress = Math.max(0, Math.min(1, (vH - rect.top) / (secH + vH)));
+      if (!timelineSec || !heartDot || !wavePathEl || !waveSvgEl) return;
+      const secRect  = timelineSec.getBoundingClientRect();
+      const secH     = timelineSec.offsetHeight;
+      const vH       = window.innerHeight;
+      const progress = Math.max(0, Math.min(1, (vH - secRect.top) / (secH + vH)));
 
-      const xOffset = (getXNorm(progress) - 0.5) * _colW;
-      heartDot.style.top  = (progress * (secH - 24)) + 'px';
-      heartDot.style.left = (_colCenter + xOffset - 10) + 'px';
+      const totalLen = wavePathEl.getTotalLength();
+      const pt       = wavePathEl.getPointAtLength(progress * totalLen);
+
+      const svgRect  = waveSvgEl.getBoundingClientRect();
+      const scaleX   = svgRect.width  / 72;   /* viewBox width */
+      const scaleY   = svgRect.height / 560;  /* viewBox height */
+
+      /* координаты относительно .timeline (positioned parent) */
+      const x = (svgRect.left - secRect.left) + pt.x * scaleX - 11;
+      const y = (svgRect.top  - secRect.top)  + pt.y * scaleY - 11;
+
+      heartDot.style.left = x + 'px';
+      heartDot.style.top  = y + 'px';
     }
 
     window.addEventListener('scroll', moveHeart, { passive: true });
-    window.addEventListener('resize', () => { cacheLayout(); moveHeart(); }, { passive: true });
-    cacheLayout();
+    window.addEventListener('resize', moveHeart,  { passive: true });
     moveHeart();
   </script>
 
@@ -442,6 +443,7 @@
         name:        fd.get('name')       || '',
         attendance:  fd.get('attendance') || '',
         guest_count: parseInt(fd.get('count')) || 1,
+        children:    fd.get('children')   || '',
         drinks:      drinks,
         second_day:  fd.get('second_day') || ''
       };
