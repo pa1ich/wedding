@@ -950,16 +950,21 @@ button, .btn-map, .btn-submit {
   }
   .hero__photo-wrap {
     width: 380px;
-    height: 490px;
   }
   .hero__photo {
     width: 380px;
-    height: 490px;
   }
   .hero__flower--tl  { left: 60px; }
   .hero__flower--lm  { left: -52px; }
-  .hero__flower--tr  { left: 268px; }
-  .hero__flower--rm  { left: 314px; }
+  .hero__flower--tr  { left: 300px; }
+  .hero__flower--rm  { left: 360px; }
+
+  .hero__decor--tl { top: 80%; left: 15%; transform: rotate(-15deg); }
+  .hero__decor--tr { top: 70%; left: 80%; transform: rotate(20deg); }
+
+  .hero__marry { height: 120px; }
+  .hero__brush-stroke { width: 600px; height: 120px; }
+  .hero__marry-text { font-size: 130px; padding-top: 20px; }
 
   .section-header { margin: 52px -2px 0; }
   .location__photo img { height: 300px; }
