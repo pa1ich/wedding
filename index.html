@@ -457,13 +457,15 @@
       // Собираем напитки (multiple checkboxes)
       const drinks = fd.getAll('drinks').join(', ');
 
+      const childrenVal = fd.get('children') ? `Дети: ${fd.get('children')}` : '';
+      const secondDay   = [fd.get('second_day') || '', childrenVal].filter(Boolean).join(' | ');
+
       const payload = {
         name:        fd.get('name')       || '',
         attendance:  fd.get('attendance') || '',
         guest_count: parseInt(fd.get('count')) || 1,
-        children:    fd.get('children')   || '',
         drinks:      drinks,
-        second_day:  fd.get('second_day') || ''
+        second_day:  secondDay
       };
 
       // Валидация имени
