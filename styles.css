@@ -129,17 +129,21 @@ a {
   display: inline-block;
 }
 .hero__name--left {
-  margin-right: -20px;
+  padding-right: 40%;
 }
 .hero__name--right {
-  margin-left: -20px;
+  position: absolute;
+  left: 50%;
+  top: 40%;
 }
 .hero__amp {
   font-family: 'Wonder Garden', 'Marck Script', cursive;
   font-size: 120px;
   color: rgba(67, 6, 7, 0.45);
-  vertical-align: middle;
   line-height: 0.8;
+  position: absolute;
+  top: 45%;
+  left: 35%;
 }
 
 .hero__photo-wrap {
@@ -449,11 +453,23 @@ a {
   position: relative;
   z-index: 1;
 }
+.timeline__cascade-img {
+  width: 72px;
+  min-height: 560px;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
 .timeline__wave-svg {
   width: 72px;
   min-height: 560px;
   height: 100%;
   display: block;
+}
+.timeline__wave-hidden {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ── Путешествующее сердечко по центральной линии ── */
@@ -826,11 +842,6 @@ a {
   align-items: center;
 }
 
-/* Soft UI Evolution — тени для карточек и секций */
-.location__photo img,
-.dresscode__photos img {
-  box-shadow: 0 4px 16px rgba(67, 6, 7, 0.10);
-}
 
 /* Hover-активные состояния (не только :active) для desktop */
 @media (hover: hover) {
@@ -941,12 +952,49 @@ button, .btn-map, .btn-submit {
 }
 .sec-tick { animation: secPulse 0.25s ease; }
 
-/* brush-stroke: лёгкое мерцание */
-@keyframes brushGlow {
-  0%, 100% { opacity: 0.93; }
-  50%       { opacity: 1; }
+/* brush-stroke: плавный въезд снизу */
+@keyframes brushSlideIn {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
 }
-.hero__brush-stroke { animation: brushGlow 3s ease-in-out infinite; }
+.hero__marry { animation: brushSlideIn 0.7s ease 0.9s both; }
+
+/* Имена: поочерёдный въезд */
+.hero__name--left  { animation: fadeSlideDown 0.65s ease 0.05s both; }
+.hero__name--right { animation: fadeSlideDown 0.65s ease 0.2s  both; }
+.hero__amp         { animation: fadeSlideDown 0.65s ease 0.12s both; }
+
+/* Countdown: числа появляются снизу вверх когда секция видима */
+@keyframes countSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.anim-visible .countdown__num {
+  animation: countSlideUp 0.5s ease both;
+}
+.anim-visible #cd-hours { animation-delay: 0.08s; }
+.anim-visible #cd-mins  { animation-delay: 0.16s; }
+.anim-visible #cd-secs  { animation-delay: 0.24s; }
+
+/* Section flowers: pop-in */
+@keyframes popIn {
+  0%   { transform: translateY(-50%) rotate(-10deg) scale(0); opacity: 0; }
+  70%  { transform: translateY(-50%) rotate(-10deg) scale(1.15); opacity: 1; }
+  100% { transform: translateY(-50%) rotate(-10deg) scale(1); opacity: 1; }
+}
+.anim-visible .section-header__flower {
+  animation: popIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+/* Кнопки: subtle hover pulse */
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(67,6,7,0.2); }
+  50%       { box-shadow: 0 0 0 6px rgba(67,6,7,0); }
+}
+.btn-map:focus-visible { animation: btnPulse 1.2s ease infinite; }
+
+/* Footer: slide up */
+.anim-visible.footer p { animation: fadeSlideDown 0.6s ease both; }
 
 /* ══════════════════════════════════════════════════════════════
    DESKTOP ADAPTATION (768px+)
@@ -958,9 +1006,6 @@ button, .btn-map, .btn-submit {
 
   .hero {
     padding: 28px 40px 40px;
-  }
-  .hero__photo-wrap {
-    width: 380px;
   }
   .hero__photo {
     width: 380px;
