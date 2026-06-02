@@ -151,7 +151,6 @@ a {
   overflow: visible;
 }
 
-/* Рамку убрана — SVG-файл сам содержит обводку из Figma */
 .hero__photo-wrap::before,
 .hero__photo-wrap::after { display: none; }
 
@@ -159,6 +158,17 @@ a {
   width: 320px;
   height: auto;
   display: block;
+}
+
+/* Художественная обводка из Figma — лёгкий SVG поверх JPG */
+.hero__outline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: auto;
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* ── Баннер «мы женимся!» поверх фото — кисть снизу ── */
@@ -456,7 +466,6 @@ a {
   top: 20px;
   z-index: 10;
   pointer-events: none;
-  filter: drop-shadow(0 1px 4px rgba(67,6,7,0.30));
   will-change: top, left;
 }
 
@@ -590,17 +599,17 @@ a {
 }
 
 .dresscode__photos {
-  margin: 20px -20px 0;
+  margin: 20px 0 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
+  background: #fff;
 }
 .dresscode__photos img {
-  width: calc(100% + 40px);
-  max-width: calc(100% + 40px);
-  height: 200px;
-  object-fit: cover;
-  object-position: top center;
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #fff;
 }
 
 /* ══════════════════════════════════════════════════════════════
