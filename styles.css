@@ -102,6 +102,7 @@ a {
   position: absolute;
   width: 90px;
   pointer-events: none;
+  display: none;
 }
 .hero__decor--tl {
   top: 0;
@@ -308,7 +309,7 @@ a {
 .invitation__decor {
   position: absolute;
   top: 55%;
-  left: -6%;
+  left: -10%;
   width: 62px;
   transform: translateY(-50%);
   opacity: 0.88;
@@ -453,23 +454,11 @@ a {
   position: relative;
   z-index: 1;
 }
-.timeline__cascade-img {
-  width: 72px;
-  min-height: 560px;
-  height: 100%;
-  object-fit: fill;
-  display: block;
-}
 .timeline__wave-svg {
   width: 72px;
   min-height: 560px;
   height: 100%;
   display: block;
-}
-.timeline__wave-hidden {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
 }
 
 /* ── Путешествующее сердечко по центральной линии ── */
@@ -1012,6 +1001,8 @@ button, .btn-map, .btn-submit {
   }
   .hero__name { font-size: 180px; margin-bottom: 40px; }
   .hero__amp  { font-size: 180px; top: 55%; left: 35%; }
+
+  .hero__decor { display: block; }
 
   .hero__flower--tl  { left: 60px; }
   .hero__flower--lm  { left: -52px; }
