@@ -194,7 +194,7 @@
               <span class="timeline__label retro-font">торт</span>
             </div>
             <div class="timeline__pic">
-              <img src="assets/timeline_cake.png" alt="Торт" />
+              <img src="assets/timeline_cake.svg" alt="Торт" />
             </div>
           </div>
 
@@ -434,12 +434,14 @@
       const pt       = wavePathEl.getPointAtLength(progress * totalLen);
 
       const svgRect  = waveSvgEl.getBoundingClientRect();
-      const scaleX   = svgRect.width  / 72;   /* viewBox width */
-      const scaleY   = svgRect.height / 560;  /* viewBox height */
+      const vbW = 72, vbH = 560;
+      const scaleX = svgRect.width  / vbW;
+      const scaleY = svgRect.height / vbH;
 
-      /* координаты относительно .timeline (positioned parent) */
-      const x = (svgRect.left - secRect.left) + pt.x * scaleX - 11;
-      const y = (svgRect.top  - secRect.top)  + pt.y * scaleY - 11;
+      /* scroll offset компенсируем через pageYOffset чтобы избежать drift от overflow:clip */
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const x = (svgRect.left + window.pageXOffset - (timelineSec.getBoundingClientRect().left + window.pageXOffset)) + pt.x * scaleX - 11;
+      const y = (svgRect.top  + scrollTop          - (secRect.top + scrollTop))                                        + pt.y * scaleY - 11;
 
       heartDot.style.left = x + 'px';
       heartDot.style.top  = y + 'px';

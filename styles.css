@@ -199,11 +199,11 @@ a {
 .hero__marry-text {
   position: relative;
   z-index: 1;
-  font-size: 80px;
+  font-size: 110px;
   color: #fff;
   line-height: 1;
   text-shadow: 0 1px 6px rgba(30,0,0,0.35);
-  padding-bottom: 7%;
+  padding-bottom: 5%;
 }
 
 .hero__flower {
@@ -1048,15 +1048,18 @@ button, .btn-map, .btn-submit {
     width: 440px;
     height: 570px;
   }
-  .hero__name  { font-size: 120px; }
+  .hero__name  { font-size: 180px; }
   .hero__amp   { font-size: 140px; }
+
+  /* Outline точно совпадает с фото 440×570 */
+  .hero__outline { width: 440px; height: 570px; }
 
   .countdown__label { font-size: 160px; }
   .countdown__num   { font-size: 92px; }
   .countdown__unit  { min-width: 100px; }
 
   .location__photo img  { height: 360px; }
-  .dresscode__photos img { height: 260px; }
+  .dresscode__photos img { height: auto; object-fit: contain; }
 
   .guest-form { padding: 32px 40px 0; }
 }
@@ -1105,13 +1108,28 @@ button, .btn-map, .btn-submit {
 .hero__flower--tr { animation: heartBeat 2.2s ease-in-out infinite 1.1s; --r:20deg; }
 .hero__flower--rm { animation: heartBeat 3.0s ease-in-out infinite 0.3s; --r:-8deg; }
 
-/* Float для section-header hearts */
-@keyframes floatHeart {
+/* HeartBeat для section-header hearts */
+@keyframes heartBeatSection {
   0%,100% { transform: translateY(-50%) rotate(var(--r2,0deg)) scale(1); }
-  50%     { transform: translateY(calc(-50% - 8px)) rotate(var(--r2,0deg)) scale(1.08); }
+  15%     { transform: translateY(-50%) rotate(var(--r2,0deg)) scale(1.20); }
+  30%     { transform: translateY(-50%) rotate(var(--r2,0deg)) scale(1); }
+  45%     { transform: translateY(-50%) rotate(var(--r2,0deg)) scale(1.13); }
+  60%     { transform: translateY(-50%) rotate(var(--r2,0deg)) scale(1); }
 }
 .section-header__flower.heart-img {
-  animation: floatHeart 3s ease-in-out infinite;
+  animation: heartBeatSection 2.4s ease-in-out infinite;
+}
+
+/* HeartBeat для путешествующего сердечка в тайминге */
+@keyframes heartBeatTravel {
+  0%,100% { transform: scale(1); }
+  15%     { transform: scale(1.35); }
+  30%     { transform: scale(1); }
+  50%     { transform: scale(1.2); }
+  65%     { transform: scale(1); }
+}
+.timeline__heart-travel svg {
+  animation: heartBeatTravel 1.6s ease-in-out infinite;
 }
 
 /* Slide-in для timeline entries */
