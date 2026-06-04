@@ -1010,6 +1010,9 @@ button, .btn-map, .btn-submit {
   .hero__photo {
     width: 380px;
   }
+  .hero__name { font-size: 180px; margin-bottom: 40px; }
+  .hero__amp  { font-size: 180px; top: 55%; left: 35%; }
+
   .hero__flower--tl  { left: 60px; }
   .hero__flower--lm  { left: -52px; }
   .hero__flower--tr  { left: 300px; }
