@@ -1026,6 +1026,9 @@ button, .btn-map, .btn-submit {
   .countdown__colon { font-size: 64px; }
 
   .invitation__date { font-size: 80px; }
+  .invitation__decor { left: -6%; }
+
+  .hero__outline { width: 380px; }
 
   .timeline__inner  { min-height: 620px; }
   .timeline__wave-svg { min-height: 620px; }
@@ -1056,4 +1059,134 @@ button, .btn-map, .btn-submit {
   .dresscode__photos img { height: 260px; }
 
   .guest-form { padding: 32px 40px 0; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HEARTS (image 27.png)
+══════════════════════════════════════════════════════════════ */
+.heart-img {
+  mix-blend-mode: multiply;
+  display: block;
+}
+
+/* hero__decor hearts — чуть крупнее на десктопе */
+.hero__decor img.heart-img {
+  width: 72px;
+  height: auto;
+}
+
+/* hero__flower hearts — разные размеры */
+.hero__flower--tl.heart-img { width: 54px; }
+.hero__flower--lm.heart-img { width: 72px; }
+.hero__flower--tr.heart-img { width: 46px; }
+.hero__flower--rm.heart-img { width: 66px; }
+
+/* section-header hearts */
+.section-header__flower.heart-img {
+  width: 54px;
+  height: auto;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   EXTRA ANIMATIONS
+══════════════════════════════════════════════════════════════ */
+
+/* Heartbeat — для сердечек вокруг фото */
+@keyframes heartBeat {
+  0%,100% { transform: scale(1) rotate(var(--r,0deg)); }
+  15%     { transform: scale(1.18) rotate(var(--r,0deg)); }
+  30%     { transform: scale(1) rotate(var(--r,0deg)); }
+  45%     { transform: scale(1.12) rotate(var(--r,0deg)); }
+  60%     { transform: scale(1) rotate(var(--r,0deg)); }
+}
+
+.hero__flower--tl { animation: heartBeat 2.4s ease-in-out infinite 0.0s; --r:-15deg; }
+.hero__flower--lm { animation: heartBeat 2.8s ease-in-out infinite 0.6s; --r:10deg; }
+.hero__flower--tr { animation: heartBeat 2.2s ease-in-out infinite 1.1s; --r:20deg; }
+.hero__flower--rm { animation: heartBeat 3.0s ease-in-out infinite 0.3s; --r:-8deg; }
+
+/* Float для section-header hearts */
+@keyframes floatHeart {
+  0%,100% { transform: translateY(-50%) rotate(var(--r2,0deg)) scale(1); }
+  50%     { transform: translateY(calc(-50% - 8px)) rotate(var(--r2,0deg)) scale(1.08); }
+}
+.section-header__flower.heart-img {
+  animation: floatHeart 3s ease-in-out infinite;
+}
+
+/* Slide-in для timeline entries */
+@keyframes slideInLeft {
+  from { opacity:0; transform:translateX(-36px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity:0; transform:translateX(36px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+.timeline__col--left  .timeline__entry.anim-visible { animation: slideInLeft  0.55s ease both; }
+.timeline__col--right .timeline__entry.anim-visible { animation: slideInRight 0.55s ease both; }
+.timeline__col--left  .timeline__entry:nth-child(2).anim-visible { animation-delay:0.18s; }
+.timeline__col--right .timeline__entry:nth-child(2).anim-visible { animation-delay:0.18s; }
+
+/* Zoom-in для фото локации */
+@keyframes zoomReveal {
+  from { opacity:0; transform:scale(0.94); }
+  to   { opacity:1; transform:scale(1); }
+}
+.anim-visible .location__photo img {
+  animation: zoomReveal 0.7s ease both;
+}
+
+/* Stagger для дресскода — фото въезжают снизу */
+@keyframes slideUpPhoto {
+  from { opacity:0; transform:translateY(40px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.anim-visible .dresscode__photos img:nth-child(1) {
+  animation: slideUpPhoto 0.6s ease 0.1s both;
+}
+.anim-visible .dresscode__photos img:nth-child(2) {
+  animation: slideUpPhoto 0.6s ease 0.28s both;
+}
+
+/* Кружки палитры — pop-in */
+@keyframes palettePop {
+  0%   { transform:scale(0); opacity:0; }
+  70%  { transform:scale(1.18); opacity:1; }
+  100% { transform:scale(1); }
+}
+.anim-visible .dresscode__palette span:nth-child(1) { animation: palettePop 0.4s ease 0.05s both; }
+.anim-visible .dresscode__palette span:nth-child(2) { animation: palettePop 0.4s ease 0.12s both; }
+.anim-visible .dresscode__palette span:nth-child(3) { animation: palettePop 0.4s ease 0.19s both; }
+.anim-visible .dresscode__palette span:nth-child(4) { animation: palettePop 0.4s ease 0.26s both; }
+.anim-visible .dresscode__palette span:nth-child(5) { animation: palettePop 0.4s ease 0.33s both; }
+
+/* Bounce для кнопок */
+@keyframes btnBounceIn {
+  0%   { transform:scale(0.85); opacity:0; }
+  60%  { transform:scale(1.06); opacity:1; }
+  100% { transform:scale(1); }
+}
+.anim-visible .btn-map,
+.anim-visible .btn-submit {
+  animation: btnBounceIn 0.5s cubic-bezier(.34,1.56,.64,1) 0.2s both;
+}
+
+/* Contacts — телефон и WA кнопка */
+.anim-visible .contacts__phone   { animation: slideInLeft  0.5s ease 0.1s both; }
+.anim-visible .contacts__whatsapp{ animation: slideInRight 0.5s ease 0.2s both; }
+
+/* WhatsApp hover — лёгкое покачивание */
+@keyframes waBounce {
+  0%,100% { transform:translateY(0); }
+  30%     { transform:translateY(-4px); }
+  60%     { transform:translateY(-2px); }
+}
+@media (hover:hover) {
+  .contacts__whatsapp:hover { animation: waBounce 0.5s ease; }
+}
+
+/* Fade-in для footer текста */
+.anim-visible.footer p {
+  animation: fadeSlideDown 0.7s ease 0.1s both;
 }

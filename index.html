@@ -19,10 +19,10 @@
     <!-- ══════════════════════════════ HERO ══════════════════════════════ -->
     <section class="hero">
       <div class="hero__decor hero__decor--tl">
-        <img src="assets/flower_1.svg" alt="" aria-hidden="true" />
+        <img src="assets/heart.png" alt="" aria-hidden="true" class="heart-img" style="transform:rotate(-20deg)" />
       </div>
       <div class="hero__decor hero__decor--tr">
-        <img src="assets/flower_3.svg" alt="" aria-hidden="true" />
+        <img src="assets/heart.png" alt="" aria-hidden="true" class="heart-img" style="transform:rotate(15deg)" />
       </div>
 
       <div class="hero__names">
@@ -34,11 +34,11 @@
       <div class="hero__photo-wrap">
         <img src="assets/photo_wedding.jpg" alt="Юрий и Диана" class="hero__photo" />
         <img src="assets/photo_outline.svg" alt="" class="hero__outline" aria-hidden="true" />
-        <!-- Flowers: positioned to match Figma nodes -->
-        <img src="assets/flower_1.svg" alt="" class="hero__flower hero__flower--tl" aria-hidden="true" />
-        <img src="assets/flower_2.svg" alt="" class="hero__flower hero__flower--lm" aria-hidden="true" />
-        <img src="assets/flower_3.svg" alt="" class="hero__flower hero__flower--tr" aria-hidden="true" />
-        <img src="assets/flower_4.svg" alt="" class="hero__flower hero__flower--rm" aria-hidden="true" />
+        <!-- Hearts -->
+        <img src="assets/heart.png" alt="" class="hero__flower hero__flower--tl heart-img" aria-hidden="true" style="transform:rotate(-15deg)" />
+        <img src="assets/heart.png" alt="" class="hero__flower hero__flower--lm heart-img" aria-hidden="true" style="transform:rotate(10deg)" />
+        <img src="assets/heart.png" alt="" class="hero__flower hero__flower--tr heart-img" aria-hidden="true" style="transform:rotate(20deg)" />
+        <img src="assets/heart.png" alt="" class="hero__flower hero__flower--rm heart-img" aria-hidden="true" style="transform:rotate(-8deg)" />
         <!-- Кисть «мы женимся!» поверх фото снизу -->
         <div class="hero__marry">
           <img src="assets/brush_stroke.svg" class="hero__brush-stroke" alt="" aria-hidden="true" />
@@ -97,7 +97,7 @@
     <!-- ══════════════════════════════ ЛОКАЦИЯ ══════════════════════════════ -->
     <div class="section-header">
       <img src="assets/banner_bg.png" alt="" class="section-header__bg" aria-hidden="true" />
-      <img src="assets/flower_section_1.svg" alt="" class="section-header__flower" aria-hidden="true" />
+      <img src="assets/heart.png" alt="" class="section-header__flower heart-img" aria-hidden="true" style="transform:translateY(-50%) rotate(-18deg)" />
       <span class="script-font">Локация</span>
     </div>
 
@@ -120,7 +120,7 @@
     <!-- ══════════════════════════════ ТАЙМИНГ ══════════════════════════════ -->
     <div class="section-header">
       <img src="assets/banner_bg.png" alt="" class="section-header__bg" aria-hidden="true" />
-      <img src="assets/flower_timeline.svg" alt="" class="section-header__flower" aria-hidden="true" />
+      <img src="assets/heart.png" alt="" class="section-header__flower heart-img" aria-hidden="true" style="transform:translateY(-50%) rotate(12deg)" />
       <span class="script-font">Тайминг</span>
     </div>
 
@@ -205,7 +205,7 @@
     <!-- ══════════════════════════════ ДРЕСС КОД ══════════════════════════════ -->
     <div class="section-header">
       <img src="assets/banner_bg.png" alt="" class="section-header__bg" aria-hidden="true" />
-      <img src="assets/flower_section_2.svg" alt="" class="section-header__flower" aria-hidden="true" />
+      <img src="assets/heart.png" alt="" class="section-header__flower heart-img" aria-hidden="true" style="transform:translateY(-50%) rotate(-10deg)" />
       <span class="script-font">Dress code</span>
     </div>
 
@@ -231,7 +231,7 @@
     <!-- ══════════════════════════════ АНКЕТА ГОСТЯ ══════════════════════════════ -->
     <div class="section-header">
       <img src="assets/banner_bg.png" alt="" class="section-header__bg" aria-hidden="true" />
-      <img src="assets/decor_hearts.svg" alt="" class="section-header__flower" aria-hidden="true" />
+      <img src="assets/heart.png" alt="" class="section-header__flower heart-img" aria-hidden="true" style="transform:translateY(-50%) rotate(20deg)" />
       <span class="script-font">Анкета гостя</span>
     </div>
 
@@ -340,7 +340,7 @@
     <!-- ══════════════════════════════ ВОПРОСЫ ══════════════════════════════ -->
     <div class="section-header">
       <img src="assets/banner_bg.png" alt="" class="section-header__bg" aria-hidden="true" />
-      <img src="assets/flower_footer.svg" alt="" class="section-header__flower section-header__flower--right" aria-hidden="true" />
+      <img src="assets/heart.png" alt="" class="section-header__flower section-header__flower--right heart-img" aria-hidden="true" style="transform:translateY(-50%) rotate(-15deg)" />
       <span class="script-font">Вопросы</span>
     </div>
 
@@ -410,6 +410,12 @@
     document.querySelectorAll(
       '.invitation, .countdown, .location, .dresscode, .guest-form, .contacts, .section-header, .footer'
     ).forEach(el => { el.classList.add('anim-hidden'); fadeObs.observe(el); });
+
+    /* Timeline entries: slide in from sides */
+    document.querySelectorAll('.timeline__entry').forEach(el => {
+      el.style.opacity = '0';
+      fadeObs.observe(el);
+    });
 
     /* ── Сердечко по треку через getPointAtLength (точное следование пути) ── */
     const timelineSec = document.querySelector('.timeline');
