@@ -181,7 +181,7 @@ a {
 .hero__outline-path {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: drawMarker 1.2s ease-out 0.5s forwards;
+  animation: drawMarker 2.8s ease-out 0.5s forwards;
 }
 
 /* ── Баннер «мы женимся!» поверх фото — кисть снизу ── */
