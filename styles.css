@@ -211,6 +211,7 @@ a {
   color: #fff;
   line-height: 1;
   text-shadow: 0 1px 6px rgba(30,0,0,0.35);
+  margin-bottom: 14px;
 }
 
 .hero__flower {
@@ -1059,6 +1060,7 @@ button, .btn-map, .btn-submit {
   .section-header__flower--right { left: auto; right: 120px; }
   .location__photo img { height: 300px; }
   .dresscode__photos img { height: 240px; }
+  .carousel__track img { height: 380px; object-fit: cover; object-position: top; }
 
   .countdown__num   { font-size: 80px; }
   .countdown__unit  { min-width: 84px; }
