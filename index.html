@@ -231,9 +231,17 @@
         <span style="background:#C0D1D9;"></span>
         <span style="background:#CBC5B9;"></span>
       </div>
-      <div class="dresscode__photos">
-        <img src="assets/dresscode_1.jpg" alt="Примеры нарядов — женский дресс-код" />
-        <img src="assets/dresscode_2.jpg" alt="Примеры нарядов — мужской дресс-код" />
+      <div class="dresscode__carousel">
+        <div class="carousel__track" id="carouselTrack">
+          <img src="assets/dresscode_3.jpg" alt="Дресс-код — наряды 1" />
+          <img src="assets/dresscode_4.jpg" alt="Дресс-код — наряды 2" />
+          <img src="assets/dresscode_5.jpg" alt="Дресс-код — наряды 3" />
+        </div>
+        <div class="carousel__dots" id="carouselDots">
+          <span class="carousel__dot carousel__dot--active"></span>
+          <span class="carousel__dot"></span>
+          <span class="carousel__dot"></span>
+        </div>
       </div>
     </section>
 
@@ -456,6 +464,35 @@
     window.addEventListener('scroll', moveHeart, { passive: true });
     window.addEventListener('resize', moveHeart,  { passive: true });
     moveHeart();
+  </script>
+
+  <script>
+    /* ── Карусель дресс-кода ── */
+    (function() {
+      const track  = document.getElementById('carouselTrack');
+      const dots   = document.querySelectorAll('.carousel__dot');
+      if (!track || !dots.length) return;
+
+      const total = track.children.length;
+      let current = 0;
+      let timer;
+
+      function goTo(idx) {
+        current = (idx + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('carousel__dot--active', i === current));
+      }
+
+      function next() { goTo(current + 1); }
+
+      function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(next, 4000);
+      }
+
+      dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); startTimer(); }));
+      startTimer();
+    })();
   </script>
 
   <script>

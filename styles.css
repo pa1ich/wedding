@@ -610,20 +610,48 @@ a {
   display: block;
 }
 
-.dresscode__photos {
-  margin: 20px 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  background: #fff;
+.dresscode__carousel {
+  margin: 24px 0 0;
+  overflow: hidden;
+  position: relative;
 }
-.dresscode__photos img {
+
+.carousel__track {
+  display: flex;
+  transition: transform 0.9s cubic-bezier(0.45, 0, 0.55, 1);
+  will-change: transform;
+}
+
+.carousel__track img {
   width: 100%;
-  max-width: 550px;
+  flex-shrink: 0;
   height: auto;
+  max-width: 550px;
   display: block;
-  background: #fff;
   margin: 0 auto;
+  object-fit: contain;
+}
+
+.carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding-bottom: 4px;
+}
+
+.carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(67, 6, 7, 0.2);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.carousel__dot--active {
+  background: #430607;
+  transform: scale(1.25);
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -1166,11 +1194,8 @@ button, .btn-map, .btn-submit {
   from { opacity:0; transform:translateY(40px); }
   to   { opacity:1; transform:translateY(0); }
 }
-.anim-visible .dresscode__photos img:nth-child(1) {
+.anim-visible .carousel__track img {
   animation: slideUpPhoto 0.6s ease 0.1s both;
-}
-.anim-visible .dresscode__photos img:nth-child(2) {
-  animation: slideUpPhoto 0.6s ease 0.28s both;
 }
 
 /* Кружки палитры — pop-in */
