@@ -956,7 +956,7 @@ button, .btn-map, .btn-submit {
   from { transform: translateY(30px); opacity: 0; }
   to   { transform: translateY(0);    opacity: 1; }
 }
-.hero__marry { animation: brushSlideIn 0.7s ease 0.9s both; }
+.hero__marry-text { animation: brushSlideIn 0.7s ease 0.9s both; }
 
 /* Имена: поочерёдный въезд */
 .hero__name--left  { animation: fadeSlideDown 0.65s ease 0.05s both; }
