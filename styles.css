@@ -129,9 +129,7 @@ a {
   color: #430607;
   display: inline-block;
 }
-.hero__name--left {
-  padding-right: 40%;
-}
+
 .hero__name--right {
   position: absolute;
   left: 50%;
