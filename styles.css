@@ -365,7 +365,7 @@ a {
 
 .section-header__flower {
   position: absolute;
-  left: 120px;
+  left: 25px;
   top: 80%;
   transform: translateY(-50%) rotate(-10deg);
   width: 68px;
@@ -1027,6 +1027,8 @@ button, .btn-map, .btn-submit {
   .hero__marry-text { font-size: 130px; padding-top: 20px; }
 
   .section-header { margin: 52px -2px 0; }
+  .section-header__flower { left: 120px; }
+  .section-header__flower--right { left: auto; right: 120px; }
   .location__photo img { height: 300px; }
   .dresscode__photos img { height: 240px; }
 
