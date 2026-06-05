@@ -230,7 +230,7 @@ a {
 .hero__flower--lm {
   width: 102px;
   height: 90px;
-  left: -48px;
+  left: -30px;
   top: 80px;
   transform: rotate(-8deg);
 }
@@ -245,10 +245,9 @@ a {
 /* Figma node 1:32 — крупный цветок, выходит за правый край фото */
 .hero__flower--rm {
   width: 99px;
-  height: 106px;
-  left: 262px;
-  top: 164px;
-  transform: rotate(20deg);
+  height: 86px;
+  left: 90%;
+  top: 64px;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -1139,7 +1138,7 @@ button, .btn-map, .btn-submit {
 .hero__flower--tl { animation: floatBobHeart 3.2s ease-in-out infinite 0.0s; --r:-15deg; }
 .hero__flower--lm { animation: floatBobHeart 2.9s ease-in-out infinite 0.5s; --r:10deg; }
 .hero__flower--tr { animation: floatBobHeart 3.5s ease-in-out infinite 0.9s; --r:20deg; }
-.hero__flower--rm { animation: floatBobHeart 3.0s ease-in-out infinite 1.3s; --r:-8deg; }
+.hero__flower--rm { animation: floatBobHeart 3.0s ease-in-out infinite 1.3s; --r:45deg; }
 
 /* HeartBeat для section-header hearts */
 @keyframes heartBeatSection {
