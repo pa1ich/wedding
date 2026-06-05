@@ -1060,7 +1060,7 @@ button, .btn-map, .btn-submit {
   .section-header__flower--right { left: auto; right: 120px; }
   .location__photo img { height: 300px; }
   .dresscode__photos img { height: 240px; }
-  .carousel__track img { height: 380px; object-fit: cover; object-position: top; }
+  .carousel__track img { height: auto; max-height: 480px; object-fit: contain; }
 
   .countdown__num   { font-size: 80px; }
   .countdown__unit  { min-width: 84px; }
