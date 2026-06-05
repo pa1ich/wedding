@@ -610,7 +610,7 @@ a {
 }
 
 .dresscode__carousel {
-  margin: 24px 0 0;
+  margin: 24px 20px 0;
   overflow: hidden;
   position: relative;
 }
@@ -624,9 +624,8 @@ a {
 .carousel__track img {
   width: 100%;
   flex-shrink: 0;
-  height: 320px;
-  object-fit: cover;
-  object-position: top;
+  height: auto;
+  object-fit: contain;
   display: block;
 }
 
